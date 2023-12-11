@@ -1,0 +1,30 @@
+{
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "Jabee",
+  "owner": "jabee.cosme@infinitedata.com",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "taskType": "SH",
+  "processingCommand": {
+    "script": "echo '${loadDate}, ${id},${name}'\necho '${domain},${node}'\necho '${processingLaunchType},${launchedBy},${launchedById},${launchedByName}'\necho '${parentId},${rootId}'\necho '${My_Semaphore}'"
+  },
+  "actions": 
+  [
+    {
+      "processingActionType": "SET_SEMAPHORE_STATE",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "PROCESSING_COMPLETED",
+      "processingCommand": {
+        "resource": "${My_Semaphore}",
+        "timestampRelation": "EQ",
+        "timestampSelector": "SAME",
+        "value": "ON"
+      }
+    }
+  ]
+}
